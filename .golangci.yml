@@ -1,0 +1,221 @@
+run:
+  concurrency: 3
+  timeout: 15m
+  issues-exit-code: 1
+  tests: true
+
+  skip-dirs:
+    - data
+
+  # list of build tags, all linters use it. Default is empty list
+
+# output configuration options
+output:
+  # colored-line-number|line-number|json|tab|checkstyle|code-climate, default is "colored-line-number"
+  format: code-climate
+
+  # print lines of code with issue, default is true
+  print-issued-lines: true
+
+  # print linter name in the end of issue text, default is true
+  print-linter-name: true
+
+  uniq-by-line: false
+
+# all available settings of specific linters
+linters-settings:
+  depguard:
+    rules:
+      main:
+        deny:
+          - pkg: "github.com/tj/assert"
+            desc: not allowed, did you mean testify assert?
+  gci:
+    local-prefixes: github.com/wimspaargaren/prolayout
+  errcheck:
+    check-type-assertions: false
+    check-foonk: true
+
+  revive:
+    ignore-generated-header: true
+    enable-all-rules: true
+    rules:
+      - name: add-constant
+        disabled: true
+      - name: var-naming
+        severity: warning
+        disabled: false
+        arguments:
+          - ["ID"] # AllowList
+          - [] # DenyList
+      - name: argument-limit
+        severity: warning
+        disabled: true
+      - name: banned-characters
+        disabled: true
+      - name: max-public-structs
+        disabled: true
+      - name: file-header
+        disabled: true
+      - name: cognitive-complexity
+        disabled: false
+        arguments: [15]
+      - name: unused-receiver
+        disabled: true
+      - name: function-length
+        disabled: false
+        arguments: [30, 0]
+      - name: line-length-limit
+        disabled: true
+      - name: cyclomatic
+        disabled: false
+        arguments: [7]
+      - name: function-result-limit
+        severity: warning
+        disabled: false
+        arguments: [3]
+      - name: import-alias-naming
+        severity: warning
+        disabled: false
+        arguments:
+          - "^[a-z][a-z0-9A-Z]{0,}$"
+  govet:
+    check-shadowing: false
+
+  golint:
+    min-confidence: 0.8
+
+  gofmt:
+    simplify: true
+  gocyclo:
+    min-complexity: 18
+  maligned:
+    suggest-new: true
+  dupl:
+    threshold: 175
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+  funlen:
+    lines: 80
+    statements: 50
+  godox:
+    keywords:
+      - HACK
+      - OPTIMIZE
+      - TODO
+      - BUG
+  misspell:
+    locale: UK
+    ignore-words:
+      - color
+      - center
+      - centers
+  lll:
+    line-length: 200
+    tab-width: 2
+  unused:
+    check-exported: false
+
+  unparam:
+    check-exported: false
+
+  nakedret:
+    max-func-lines: 0
+  prealloc:
+    simple: true
+    range-loops: true # Report preallocation suggestions on range loops, true by default
+    for-loops: false # Report preallocation suggestions on for loops, false by default
+  gocritic:
+    disabled-checks:
+      - regexpMust
+
+    enabled-tags:
+      - performance
+
+    settings: # settings passed to gocritic
+      captLocal: # must be valid enabled check name
+        paramsOnly: true
+      rangeValCopy:
+        sizeThreshold: 32
+
+linters:
+  disable-all: true
+  enable:
+    - asciicheck
+    - bodyclose
+    - dupl
+    - errcheck
+    - errorlint
+    - exhaustive
+    - exportloopref
+    - funlen
+    - gci
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godox
+    - gofmt
+    - gofumpt
+    - goheader
+    - revive
+    - gomodguard
+    - goprintffuncname
+    - gosimple 
+    - govet 
+    - ineffassign
+    - misspell
+    - nakedret
+    - nestif
+    - noctx
+    - nolintlint
+    - rowserrcheck
+    - sqlclosecheck
+    - staticcheck 
+    - tparallel
+    - typecheck
+    - unconvert
+    - unparam
+    - whitespace
+    - dogsled
+    - godot
+    - goerr113
+    - goimports
+    - lll
+    - prealloc
+    - testpackage
+    - depguard
+   
+  fast: false
+
+severity: 
+  default-severity: error
+  rules:
+    - linters:
+        - gomodguard
+      severity: warning
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - funlen
+
+    - linters:
+        - staticcheck
+      text: "SA9003:"
+
+    - linters:
+        - lll
+      text: "^//go:generate "
+
+  exclude-use-default: false
+
+  max-issues-per-linter: 0
+
+  max-same-issues: 0
+
+  new: false
