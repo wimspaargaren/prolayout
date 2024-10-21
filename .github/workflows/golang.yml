@@ -1,0 +1,23 @@
+---
+name: Golang
+"on":
+  # required by gomod-go-version-updater to trigger this action once pr has
+  # been reviewed
+  pull_request_review:
+    types: [submitted]
+  push:
+permissions:
+  contents: read
+  packages: read
+jobs:
+  mcvs-golang-action:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.2.1
+      - uses: schubergphilis/mcvs-golang-action@v0.8.3
+        with:
+          code_coverage_expected: 62.3
+          gci: "false"
+          golang-unit-tests-exclusions: |-
+            \(cmd\/prolayout\)
+          golangci-lint-version: v1.61.0
