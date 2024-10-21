@@ -10,6 +10,7 @@ permissions:
   contents: read
   packages: read
 jobs:
+  #
   mcvs-golang-action:
     runs-on: ubuntu-20.04
     steps:
@@ -21,8 +22,3 @@ jobs:
           golang-unit-tests-exclusions: |-
             \(cmd\/mcvs-scanner\|cmd\/mcvs-scanner-cli\|deprecated\|docs\/swagger\|mocks\)
           golangci-lint-version: v1.61.0
-          token: ${{ secrets.GITHUB_TOKEN }}
-          trivy-action-db: |-
-            ghcr.io/schubergphilis/mcvs-scanner-trivy-db:2
-          trivy-action-java-db: |-
-            ghcr.io/schubergphilis/mcvs-scanner-trivy-java-db:1
