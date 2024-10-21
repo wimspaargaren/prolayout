@@ -13,9 +13,8 @@ jobs:
   mcvs-golang-action:
     runs-on: ubuntu-22.04
     steps:
-      #
       - uses: actions/checkout@v4.2.1
-      - uses: schubergphilis/mcvs-golang-action@89-1-space-yamllint
+      - uses: schubergphilis/mcvs-golang-action@v0.8.3
         with:
           code_coverage_expected: 62.3
           gci: "false"
