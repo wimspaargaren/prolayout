@@ -1,6 +1,4 @@
+---
 module: "github.com/wimspaargaren/prolayout"
 root:
   - name: "bar"
-   
-
-
