@@ -17,8 +17,8 @@ jobs:
       - uses: actions/checkout@v4.2.1
       - uses: schubergphilis/mcvs-golang-action@87-optional-gci
         with:
-          code_coverage_expected: 59.8
+          code_coverage_expected: 62.3
           gci: "false"
           golang-unit-tests-exclusions: |-
-            \(cmd\/mcvs-scanner\|cmd\/mcvs-scanner-cli\|deprecated\|docs\/swagger\|mocks\)
+            \(cmd\/prolayout\)
           golangci-lint-version: v1.61.0
