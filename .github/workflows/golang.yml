@@ -14,9 +14,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4.2.1
-      - uses: schubergphilis/mcvs-golang-action@v0.8.1
+      - uses: schubergphilis/mcvs-golang-action@87-optional-gci
         with:
           code_coverage_expected: 59.8
+          gci: "false"
           golang-unit-tests-exclusions: |-
             \(cmd\/mcvs-scanner\|cmd\/mcvs-scanner-cli\|deprecated\|docs\/swagger\|mocks\)
           golangci-lint-version: v1.61.0
