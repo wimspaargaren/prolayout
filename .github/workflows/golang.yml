@@ -10,12 +10,11 @@ permissions:
   contents: read
   packages: read
 jobs:
-  #
   mcvs-golang-action:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4.2.1
-      - uses: schubergphilis/mcvs-golang-action@87-optional-gci
+      - uses: schubergphilis/mcvs-golang-action@v0.8.2
         with:
           code_coverage_expected: 62.3
           gci: "false"
