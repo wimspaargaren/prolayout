@@ -1,25 +1,17 @@
+---
 run:
   concurrency: 3
   timeout: 15m
   issues-exit-code: 1
   tests: true
-
-  skip-dirs:
-    - data
-
   # list of build tags, all linters use it. Default is empty list
 
 # output configuration options
 output:
-  # colored-line-number|line-number|json|tab|checkstyle|code-climate, default is "colored-line-number"
-  format: code-climate
-
   # print lines of code with issue, default is true
   print-issued-lines: true
-
   # print linter name in the end of issue text, default is true
   print-linter-name: true
-
   uniq-by-line: false
 
 # all available settings of specific linters
@@ -30,12 +22,14 @@ linters-settings:
         deny:
           - pkg: "github.com/tj/assert"
             desc: not allowed, did you mean testify assert?
-  gci:
-    local-prefixes: github.com/wimspaargaren/prolayout
+
   errcheck:
     check-type-assertions: false
-    check-foonk: true
-
+  gci:
+    sections:
+      - standard # Standard section: captures all standard packages.
+      - default
+      - prefix(github.com/wimspaargaren/prolayout)
   revive:
     ignore-generated-header: true
     enable-all-rules: true
@@ -79,18 +73,10 @@ linters-settings:
         disabled: false
         arguments:
           - "^[a-z][a-z0-9A-Z]{0,}$"
-  govet:
-    check-shadowing: false
-
-  golint:
-    min-confidence: 0.8
-
   gofmt:
     simplify: true
   gocyclo:
     min-complexity: 18
-  maligned:
-    suggest-new: true
   dupl:
     threshold: 175
   goconst:
@@ -114,25 +100,19 @@ linters-settings:
   lll:
     line-length: 200
     tab-width: 2
-  unused:
-    check-exported: false
-
   unparam:
     check-exported: false
-
   nakedret:
     max-func-lines: 0
   prealloc:
     simple: true
-    range-loops: true # Report preallocation suggestions on range loops, true by default
-    for-loops: false # Report preallocation suggestions on for loops, false by default
+    range-loops: true
+    for-loops: false
   gocritic:
     disabled-checks:
       - regexpMust
-
     enabled-tags:
       - performance
-
     settings: # settings passed to gocritic
       captLocal: # must be valid enabled check name
         paramsOnly: true
@@ -140,58 +120,22 @@ linters-settings:
         sizeThreshold: 32
 
 linters:
-  disable-all: true
-  enable:
-    - asciicheck
-    - bodyclose
-    - dupl
-    - errcheck
-    - errorlint
-    - exhaustive
-    - exportloopref
-    - funlen
-    - gci
-    - gochecknoglobals
-    - gochecknoinits
-    - gocognit
-    - goconst
-    - gocritic
-    - gocyclo
-    - godox
-    - gofmt
-    - gofumpt
-    - goheader
-    - revive
-    - gomodguard
-    - goprintffuncname
-    - gosimple 
-    - govet 
-    - ineffassign
-    - misspell
-    - nakedret
-    - nestif
-    - noctx
-    - nolintlint
-    - rowserrcheck
-    - sqlclosecheck
-    - staticcheck 
-    - tparallel
-    - typecheck
-    - unconvert
-    - unparam
-    - whitespace
-    - dogsled
-    - godot
-    - goerr113
-    - goimports
-    - lll
-    - prealloc
-    - testpackage
-    - depguard
-   
+  enable-all: true
+  disable:
+    - errname
+    - execinquery # deprecated (since v1.58.0)
+    - exhaustruct
+    - exportloopref # deprecated (since v1.60.2)
+    - gomnd # deprecated (since v1.58.0)
+    - nilnil
+    - nlreturn
+    - paralleltest
+    - varnamelen
+    - wsl
+
   fast: false
 
-severity: 
+severity:
   default-severity: error
   rules:
     - linters:
