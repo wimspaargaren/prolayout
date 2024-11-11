@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: schubergphilis/mcvs-golang-action@v0.10.1
+      - uses: schubergphilis/mcvs-golang-action@v0.10.2
         with:
           code-coverage-expected: 62.3
           gci: "false"
