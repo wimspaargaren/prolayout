@@ -1,6 +1,6 @@
 module github.com/wimspaargaren/prolayout
 
-go 1.23.3
+go 1.24.0
 
 require (
 	github.com/stretchr/testify v1.9.0
