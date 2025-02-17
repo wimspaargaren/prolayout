@@ -3,15 +3,9 @@ version: 3
 
 vars:
   REMOTE_URL: https://raw.githubusercontent.com
-  REMOTE_URL_REF: v0.9.4
+  REMOTE_URL_REF: v0.16.3
   REMOTE_URL_REPO: schubergphilis/mcvs-golang-action
 
 includes:
   remote: >-
     {{.REMOTE_URL}}/{{.REMOTE_URL_REPO}}/{{.REMOTE_URL_REF}}/Taskfile.yml
-
-tasks:
-  test-all:
-    deps:
-      - task: remote:golangci-lint
-      - task: remote:test

@@ -16,13 +16,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: schubergphilis/mcvs-golang-action@v0.10.1
+      - uses: schubergphilis/mcvs-golang-action@v0.16.3
         with:
           code-coverage-expected: 62.3
           gci: "false"
           golang-unit-tests-exclusions: |-
             \(cmd\/prolayout\)
-          golangci-lint-version: v1.61.0
           testing-type: ${{ matrix.testing-type }}
     strategy:
       matrix:
