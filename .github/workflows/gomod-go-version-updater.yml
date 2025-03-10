@@ -11,4 +11,4 @@ jobs:
   gomod-go-version-updater-action:
     runs-on: ubuntu-22.04
     steps:
-      - uses: schubergphilis/gomod-go-version-updater-action@v0.3.0
+      - uses: schubergphilis/gomod-go-version-updater-action@v0.3.1
