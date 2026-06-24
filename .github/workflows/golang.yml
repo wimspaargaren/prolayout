@@ -16,10 +16,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: schubergphilis/mcvs-golang-action@v0.16.6
+      - uses: schubergphilis/mcvs-golang-action@d7dc64eca3ec0c7b06a49f7cc9d962e76fa4a72b
         with:
           code-coverage-expected: 62.3
-          gci: "false"
           golang-unit-tests-exclusions: |-
             \(cmd\/prolayout\)
           testing-type: ${{ matrix.testing-type }}
@@ -29,6 +28,4 @@ jobs:
           - coverage
           - lint
           - security-golang-modules
-          - security-grype
-          - security-trivy
           - unit
