@@ -1,18 +1,17 @@
 .PHONY: lint test format 
 
-golangciLintVersion = "v1.55.2"
+golangciLintVersion = "v2.12.2"
 gofumptVersion = "v0.5.0"
 gciVersion = "v0.11.0"
 govulncheckVersion = "v1.0.1"
 
 # Lint Go Code
 $(GOBIN)/golangci-lint:
-	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@${golangciLintVersion}
+	@go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@${golangciLintVersion}
 
 lint: | $(GOBIN)/golangci-lint
 	@echo Linting...
-	@golangci-lint  -v --concurrency=3 --config=.golangci.yml --issues-exit-code=1 run \
-	--out-format=colored-line-number 
+	@golangci-lint run
 
 # Format Go Code
 $(GOBIN)/gofumpt:
