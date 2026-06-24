@@ -10,7 +10,7 @@ permissions:
   contents: read
   packages: read
 jobs:
-  MCVS-golang-action:
+  mcvs-golang-action:
     env:
       TASK_X_REMOTE_TASKFILES: 1
     runs-on: ubuntu-22.04
