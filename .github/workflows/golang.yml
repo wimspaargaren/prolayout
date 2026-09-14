@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: schubergphilis/mcvs-golang-action@0ab2d975e4817fa1c9c2b47af8ad17a99282c3d9
+      - uses: schubergphilis/mcvs-golang-action@4da5f7c1f8c4d6925e28d120199822f91838ecb7
         with:
           code-coverage-expected: 62.3
           golang-unit-tests-exclusions: |-
